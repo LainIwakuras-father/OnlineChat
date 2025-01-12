@@ -8,8 +8,9 @@ from config import settings
 '''
 Подключение к серверу
 '''
-DB_URL = settings.DB_URL
+DB_URL = 'sqlite+aiosqlite:///db.sqlite3'
 engine = create_async_engine(DB_URL)
+
 '''
 Создание сессии для работы с БД
 '''
@@ -20,6 +21,8 @@ async_session = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncS
 class Base(AsyncAttrs, DeclarativeBase):
     reated_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
+
+Base.metadata.create_all
 """
 функции создания  и удаления БД
 """
