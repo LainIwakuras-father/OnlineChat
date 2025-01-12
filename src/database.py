@@ -3,12 +3,12 @@ from datetime import datetime
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-from src.core.configs import Settings
+from config import settings
 
 '''
 Подключение к серверу
 '''
-DB_URL = Settings.DB_URL
+DB_URL = settings.DB_URL
 engine = create_async_engine(DB_URL)
 '''
 Создание сессии для работы с БД
