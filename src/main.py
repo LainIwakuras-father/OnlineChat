@@ -1,12 +1,16 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from src.chat.router import router
+from users.router import users_router
+from chat.router import chat_router
+
 
 
 app = FastAPI(title="OnlineChat",version="0.1.0", description="API для Онлайн чата",debug=True)
 
-app.mount('/static', StaticFiles(directory='src/static'), name='static')
-app.include_router(router)
+app.mount('/static', StaticFiles(directory='static'), name='static')
+app.include_router(users_router)
+app.include_router(chat_router)
+
 
 if __name__ == "__main__":
     import uvicorn
